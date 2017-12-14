@@ -120,16 +120,16 @@ namespace PrismContrib.WindsorExtensions.Tests
         }
 
 
-        [TestMethod]
-        public void RegisterFrameworkExceptionTypesShouldRegisterActivationException()
-        {
-            var bootstrapper = new DefaultWindsorBootstrapper();
+        //[TestMethod]
+        //public void RegisterFrameworkExceptionTypesShouldRegisterActivationException()
+        //{
+        //    var bootstrapper = new DefaultWindsorBootstrapper();
 
-            bootstrapper.CallRegisterFrameworkExceptionTypes();
+        //    bootstrapper.CallRegisterFrameworkExceptionTypes();
 
-            Assert.IsTrue(ExceptionExtensions.IsFrameworkExceptionRegistered(
-                typeof(Microsoft.Practices.ServiceLocation.ActivationException)));
-        }
+        //    Assert.IsTrue(ExceptionExtensions.IsFrameworkExceptionRegistered(
+        //        typeof(Microsoft.Practices.ServiceLocation.ActivationException)));
+        //}
 
         [TestMethod]
         public void RegisterFrameworkExceptionTypesShouldRegisterResolutionFailedException()
@@ -162,16 +162,16 @@ namespace PrismContrib.WindsorExtensions.Tests
 
         public DependencyObject BaseShell
         {
-            get { return base.Shell; }
+            get { return this.Shell; }
         }
         public IWindsorContainer BaseContainer
         {
-            get { return base.Container; }
-            set { base.Container = value; }
+            get { return this.Container; }
+            set { this.Container = value; }
         }
 
         public MockLoggerAdapter BaseLogger
-        { get { return base.Logger as MockLoggerAdapter; } }
+        { get { return this.Logger as MockLoggerAdapter; } }
 
         public IWindsorContainer CallCreateContainer()
         {
@@ -203,7 +203,7 @@ namespace PrismContrib.WindsorExtensions.Tests
         {
             this.MethodCalls.Add(System.Reflection.MethodBase.GetCurrentMethod().Name);
             this.CreateShellCalled = true;
-            return ShellObject;
+            return this.ShellObject;
         }
 
         protected override void ConfigureServiceLocator()
@@ -250,10 +250,10 @@ namespace PrismContrib.WindsorExtensions.Tests
         protected override RegionAdapterMappings ConfigureRegionAdapterMappings()
         {
             this.MethodCalls.Add(System.Reflection.MethodBase.GetCurrentMethod().Name);
-            ConfigureRegionAdapterMappingsCalled = true;
+            this.ConfigureRegionAdapterMappingsCalled = true;
             var regionAdapterMappings = base.ConfigureRegionAdapterMappings();
 
-            DefaultRegionAdapterMappings = regionAdapterMappings;
+            this.DefaultRegionAdapterMappings = regionAdapterMappings;
 
             return regionAdapterMappings;
         }

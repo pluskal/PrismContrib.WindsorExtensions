@@ -26,7 +26,7 @@ namespace PrismContrib.WindsorExtensions.Tests.Mocks
 
         public void Log(string message, Category category, Priority priority)
         {
-            Messages.Add(message);
+            this.Messages.Add(message);
         }
     }
 }

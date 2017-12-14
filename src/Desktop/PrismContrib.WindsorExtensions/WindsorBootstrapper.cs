@@ -4,8 +4,11 @@ using Microsoft.Practices.ServiceLocation;
 using Castle.Windsor;
 using Castle.MicroKernel;
 using Castle.MicroKernel.Registration;
-//using CommonServiceLocator.WindsorAdapter;
+using CommonServiceLocator;
+
+using CommonServiceLocator.WindsorAdapter;
 using CommonServiceLocator.WindsorAdapter.Unofficial;
+using WindsorServiceLocator = CommonServiceLocator.WindsorAdapter.Unofficial.WindsorServiceLocator;
 
 namespace PrismContrib.WindsorExtensions
 {
@@ -76,6 +79,9 @@ namespace PrismContrib.WindsorExtensions
             this.Logger.Log(Resources.ConfiguringServiceLocatorSingleton, Category.Debug, Priority.Low);
             this.ConfigureServiceLocator();
 
+            this.Logger.Log(Resources.ConfigureViewModelLocator, Category.Debug, Priority.Low);
+            this.ConfigureViewModelLocator();
+
             this.Logger.Log(Resources.ConfiguringRegionAdapters, Category.Debug, Priority.Low);
             this.ConfigureRegionAdapterMappings();
 
@@ -125,7 +131,7 @@ namespace PrismContrib.WindsorExtensions
                 typeof(Castle.Windsor.Configuration.Interpreters.ConfigurationProcessingException));
 
             ExceptionExtensions.RegisterFrameworkExceptionType(
-                typeof(Castle.MicroKernel.ComponentNotFoundException));
+                typeof(ComponentNotFoundException));
         }
 
         /// <summary>
@@ -134,32 +140,32 @@ namespace PrismContrib.WindsorExtensions
         /// </summary>
         protected virtual void ConfigureContainer()
         {
-            Container.Register(Component.For<ILoggerFacade>().Instance(Logger));
+            this.Container.Register(Component.For<ILoggerFacade>().Instance(this.Logger));
 
-            Container.Register(Component.For<IModuleCatalog>().Instance(ModuleCatalog));
+            this.Container.Register(Component.For<IModuleCatalog>().Instance(this.ModuleCatalog));
 
-            if (useDefaultConfiguration)
+            if (this.useDefaultConfiguration)
             {
-                Container.Register(Component.For<IWindsorContainer>().Instance(Container));
-                RegisterTypeIfMissing(typeof(IServiceLocator), typeof(WindsorServiceLocator), true);
-                RegisterTypeIfMissing(typeof(IModuleInitializer), typeof(ModuleInitializer), true);
-                RegisterTypeIfMissing(typeof(IModuleManager), typeof(ModuleManager), true);
-                RegisterTypeIfMissing(typeof(RegionAdapterMappings), typeof(RegionAdapterMappings), true);
-                RegisterTypeIfMissing(typeof(IRegionManager), typeof(RegionManager), true);
-                RegisterTypeIfMissing(typeof(IEventAggregator), typeof(EventAggregator), true);
-                RegisterTypeIfMissing(typeof(IRegionViewRegistry), typeof(RegionViewRegistry), true);
-                RegisterTypeIfMissing(typeof(IRegionBehaviorFactory), typeof(RegionBehaviorFactory), true);
-                RegisterTypeIfMissing(typeof(IRegionNavigationJournalEntry), typeof(RegionNavigationJournalEntry), false);
-                RegisterTypeIfMissing(typeof(IRegionNavigationJournal), typeof(RegionNavigationJournal), false);
-                RegisterTypeIfMissing(typeof(IRegionNavigationService), typeof(RegionNavigationService), false);
-                RegisterTypeIfMissing(typeof(IRegionNavigationContentLoader), typeof(RegionNavigationContentLoader), true);
-                RegisterTypeIfMissing(typeof(DelayedRegionCreationBehavior), typeof(DelayedRegionCreationBehavior), false);                
-                
+                this.Container.Register(Component.For<IWindsorContainer>().Instance(this.Container));
+                this.RegisterTypeIfMissing(typeof(IServiceLocator), typeof(WindsorServiceLocator), true);
+                this.RegisterTypeIfMissing(typeof(IModuleInitializer), typeof(ModuleInitializer), true);
+                this.RegisterTypeIfMissing(typeof(IModuleManager), typeof(ModuleManager), true);
+                this.RegisterTypeIfMissing(typeof(RegionAdapterMappings), typeof(RegionAdapterMappings), true);
+                this.RegisterTypeIfMissing(typeof(IRegionManager), typeof(RegionManager), true);
+                this.RegisterTypeIfMissing(typeof(IEventAggregator), typeof(EventAggregator), true);
+                this.RegisterTypeIfMissing(typeof(IRegionViewRegistry), typeof(RegionViewRegistry), true);
+                this.RegisterTypeIfMissing(typeof(IRegionBehaviorFactory), typeof(RegionBehaviorFactory), true);
+                this.RegisterTypeIfMissing(typeof(IRegionNavigationJournalEntry), typeof(RegionNavigationJournalEntry), false);
+                this.RegisterTypeIfMissing(typeof(IRegionNavigationJournal), typeof(RegionNavigationJournal), false);
+                this.RegisterTypeIfMissing(typeof(IRegionNavigationService), typeof(RegionNavigationService), false);
+                this.RegisterTypeIfMissing(typeof(IRegionNavigationContentLoader), typeof(RegionNavigationContentLoader), true);
+                this.RegisterTypeIfMissing(typeof(DelayedRegionCreationBehavior), typeof(DelayedRegionCreationBehavior), false);
+
                 // register region adapters
-                Container.Register(Classes.FromAssemblyContaining<IRegionAdapter>().BasedOn<IRegionAdapter>().LifestyleTransient());
-                
+                this.Container.Register(Classes.FromAssemblyContaining<IRegionAdapter>().BasedOn<IRegionAdapter>().LifestyleTransient());
+
                 // register region behaviors
-                Container.Register(Classes.FromAssemblyContaining<IRegionBehavior>().BasedOn<IRegionBehavior>().LifestyleTransient());
+                this.Container.Register(Classes.FromAssemblyContaining<IRegionBehavior>().BasedOn<IRegionBehavior>().LifestyleTransient());
             }
         }
 
@@ -213,9 +219,9 @@ namespace PrismContrib.WindsorExtensions
             {
                 throw new ArgumentNullException("toType");
             }
-            if (Container.Kernel.HasComponent(fromType))
+            if (this.Container.Kernel.HasComponent(fromType))
             {
-                Logger.Log(
+                this.Logger.Log(
                     String.Format(CultureInfo.CurrentCulture,
                                   Resources.TypeMappingAlreadyRegistered,
                                   fromType.Name), Category.Debug, Priority.Low);
@@ -224,13 +230,13 @@ namespace PrismContrib.WindsorExtensions
             {
                 if (registerAsSingleton)
                 {
-                    Container.Register(Castle.MicroKernel.Registration.Component.For(fromType)
+                    this.Container.Register(Component.For(fromType)
                         .ImplementedBy(toType)
                         .LifeStyle.Singleton);
                 }
                 else
                 {
-                    Container.Register(Castle.MicroKernel.Registration.Component.For(fromType)
+                    this.Container.Register(Component.For(fromType)
                         .ImplementedBy(toType)
                         .LifeStyle.Transient);
                 }

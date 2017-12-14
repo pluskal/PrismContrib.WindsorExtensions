@@ -132,6 +132,9 @@
   <data name="ConfiguringServiceLocatorSingleton" xml:space="preserve">
     <value>Configuring ServiceLocator singleton.</value>
   </data>
+  <data name="ConfigureViewModelLocator" xml:space="preserve">
+    <value>Configuring ViewModelLocator singleton.</value>
+  </data>
   <data name="ConfiguringUnityContainer" xml:space="preserve">
     <value>Configuring the Unity container.</value>
   </data>
