@@ -1,23 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrismContrib.WindsorExtensions.Desktop", "src\Desktop\PrismContrib.WindsorExtensions\PrismContrib.WindsorExtensions.Desktop.csproj", "{84597EFB-157E-44ED-8FF1-500F5A8D4C20}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrismContrib.WindsorExtensions.Desktop", "src\Desktop\PrismContrib.WindsorExtensions\PrismContrib.WindsorExtensions.Desktop.csproj", "{8490412A-734F-4ED4-A430-A2730AB08849}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrismContrib.WindsorExtensions.Desktop.Tests", "src\Desktop\PrismContrib.WindsorExtensions.Tests\PrismContrib.WindsorExtensions.Desktop.Tests.csproj", "{43A17AC2-119E-494B-BA5C-297F1E2B23A4}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B92F2C34-3C38-48F3-BBCB-A322B907DAB8}"
-	ProjectSection(SolutionItems) = preProject
-		src\ProjectInfo.cs = src\ProjectInfo.cs
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{585DDB35-4F20-4621-925D-47038209208A}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.Config = .nuget\NuGet.Config
-		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
-	EndProjectSection
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrismContrib.WindsorExtensions.Desktop.Tests", "src\Desktop\PrismContrib.WindsorExtensions.Tests\PrismContrib.WindsorExtensions.Desktop.Tests.csproj", "{F12FC1BC-6FB6-4395-961A-E72BCC5FAB7A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,16 +13,19 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{84597EFB-157E-44ED-8FF1-500F5A8D4C20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{84597EFB-157E-44ED-8FF1-500F5A8D4C20}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{84597EFB-157E-44ED-8FF1-500F5A8D4C20}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{84597EFB-157E-44ED-8FF1-500F5A8D4C20}.Release|Any CPU.Build.0 = Release|Any CPU
-		{43A17AC2-119E-494B-BA5C-297F1E2B23A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{43A17AC2-119E-494B-BA5C-297F1E2B23A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{43A17AC2-119E-494B-BA5C-297F1E2B23A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{43A17AC2-119E-494B-BA5C-297F1E2B23A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8490412A-734F-4ED4-A430-A2730AB08849}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8490412A-734F-4ED4-A430-A2730AB08849}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8490412A-734F-4ED4-A430-A2730AB08849}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8490412A-734F-4ED4-A430-A2730AB08849}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F12FC1BC-6FB6-4395-961A-E72BCC5FAB7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F12FC1BC-6FB6-4395-961A-E72BCC5FAB7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F12FC1BC-6FB6-4395-961A-E72BCC5FAB7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F12FC1BC-6FB6-4395-961A-E72BCC5FAB7A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E127EF23-490C-4AC0-903E-F1EC76E14C86}
 	EndGlobalSection
 EndGlobal
